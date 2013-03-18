@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "opencv_dll", "opencv_dll\opencv_dll.vcxproj", "{81D4F41A-326D-4330-9A4F-2916943670F6}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "opencv_exe", "opencv_exe\opencv_exe.vcxproj", "{26C27B79-8956-4B6E-A1DE-33FEE0357DDD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{81D4F41A-326D-4330-9A4F-2916943670F6}.Debug|Win32.ActiveCfg = Debug|Win32
+		{81D4F41A-326D-4330-9A4F-2916943670F6}.Debug|Win32.Build.0 = Debug|Win32
+		{81D4F41A-326D-4330-9A4F-2916943670F6}.Release|Win32.ActiveCfg = Release|Win32
+		{81D4F41A-326D-4330-9A4F-2916943670F6}.Release|Win32.Build.0 = Release|Win32
+		{26C27B79-8956-4B6E-A1DE-33FEE0357DDD}.Debug|Win32.ActiveCfg = Debug|Win32
+		{26C27B79-8956-4B6E-A1DE-33FEE0357DDD}.Debug|Win32.Build.0 = Debug|Win32
+		{26C27B79-8956-4B6E-A1DE-33FEE0357DDD}.Release|Win32.ActiveCfg = Release|Win32
+		{26C27B79-8956-4B6E-A1DE-33FEE0357DDD}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
