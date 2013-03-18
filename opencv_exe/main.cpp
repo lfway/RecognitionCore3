@@ -34,14 +34,20 @@ int main()
 	cvSetCaptureProperty(capture, CV_CAP_PROP_FRAME_WIDTH, CAM_WIDTH);
 	cvSetCaptureProperty(capture, CV_CAP_PROP_FRAME_HEIGHT, CAM_HEIGHT);
 
-	//-- 3. Process every frame
+	//-- 3. Video writer
+	const char *filename = "capture.avi";
+	double fps = 7;
+	CvSize size = cvSize(320, 240);
+	CvVideoWriter *writer = cvCreateVideoWriter(filename, CV_FOURCC('X','V','I','D'), fps, size, 1);
+
+	//-- 4. Process every frame
 	if( capture )
 	{
 		std::vector<Rect> faces;
 		Mat frame;
 		while( true )
 		{
-			//-- 3.1 Get frame
+			//-- 4.1 Get frame
 			frame = cvQueryFrame( capture );
 
 			// result variables
@@ -49,23 +55,32 @@ int main()
 			int result_code;
 			string text;
 
-			//-- 3.2 Process frame
+			//-- 4.2 Process frame
 			recog_core->ProcessImage(frame, face_part_coords, result_code);
 			
 			if(result_code == 1) text = "rotated left";
 			if(result_code == 2) text = "rotated right";
-
-			if(result_code == 3) text = "inclined left";
-			if(result_code == 4) text = "inclined right";
-
-			if(result_code == 4) text = "inclined left";
 			if(result_code == 3) text = "inclined right";
+			if(result_code == 4) text = "inclined left";
 
+			//-- 4.3 Video output
 			cv::putText(frame, text, cv::Point( 15,35), 1, 2,cv::Scalar(0,255,10), 2, 7,false);
 			imshow(WIN_NAME, frame);
+
+			//-- 4.4 Write video
+			cvWriteFrame(writer, &(IplImage)frame);
+
+			//-- 4.5 Wait stop
 			int c = waitKey(10);
 			if((char)c == 'c'){break;}
 		}
 	}
+
+	cvReleaseCapture( &capture );
+	cvReleaseVideoWriter(&writer);
+	cvDestroyWindow("capture");
+
+
+
 	return 0;
 }
