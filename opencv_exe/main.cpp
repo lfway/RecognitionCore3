@@ -61,12 +61,8 @@ int main()
 			if(result_code == 4) text = "inclined left";
 			if(result_code == 3) text = "inclined right";
 
-
-			/*
-			flip(frame, frame, 1);
-			*/
 			cv::putText(frame, text, cv::Point( 15,35), 1, 2,cv::Scalar(0,255,10), 2, 7,false);
-			imshow( WIN_NAME, frame );
+			imshow(WIN_NAME, frame);
 			int c = waitKey(10);
 			if((char)c == 'c'){break;}
 		}
