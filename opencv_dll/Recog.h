@@ -7,12 +7,7 @@
 #include <fstream>
 #include <string>
 #include <sstream>
-
 #include <math.h>
-//#define WIN_NAME "HogWindow"
-//#define IMG_FILE_NAME "v1.jpg"
-
-//#include "opencv_dll.h"
 
 #define CAM_WIDTH 320
 #define CAM_HEIGHT 240
@@ -21,23 +16,6 @@
 
 using namespace cv;
 using namespace std;
-
-
-class IRecog1
-{
-public:
-	virtual void ProcessImage11()=0;
-};
-
-class IRecog2: public IRecog1
-{
-public:
-	void ProcessImage11()
-	{
-			
-	};
-};
-
 
 class IRecog
 {
@@ -108,9 +86,9 @@ public:
 			ProcessVector(noses,	noses2,		nose_roi_rect);
 			ProcessVector(mouths,	mouths2,	mouth_roi_rect);
 
-			rectangle(frame, face_roi_rect,	Scalar(255, 255, 255),	1, 8, 0 );
-			rectangle(frame, nose_roi_rect,	Scalar(255, 0, 0),		1, 8, 0 );
-			rectangle(frame, mouth_roi_rect,	Scalar(0, 0, 255),		1, 8, 0 );
+			//rectangle(frame, face_roi_rect,	Scalar(255, 255, 255),	1, 8, 0 );
+			//rectangle(frame, nose_roi_rect,	Scalar(255, 0, 0),		1, 8, 0 );
+			//rectangle(frame, mouth_roi_rect,	Scalar(0, 0, 255),		1, 8, 0 );
 
 			DrawVector(frame, eyes2, face_roi_rect, Scalar(255,255,255), 2, rotate_right);
 			DrawVector(frame, noses2, nose_roi_rect, Scalar(255,0,0), 1, rotate_right);
