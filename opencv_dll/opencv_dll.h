@@ -15,10 +15,9 @@ using namespace std;
 #define RESULT_DOWN			3
 #define RESULT_UP			4
 #define RESULT_CLOCKWISE		5
-#define RESULT_ANTICLOCKWISE	6*/
+#define RESULT_ANTICLOCKWISE	6
+*/
 
 void TestGetSize(Mat& im, int & val1, int & val2);
-
-void ProcessImage(Mat& TheFrame, vector<pair<int, int> > & FacePartCoords, int & ResultCode);
 
 IRecog* InitRecog(void);
