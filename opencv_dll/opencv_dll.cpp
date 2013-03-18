@@ -82,7 +82,7 @@ void ProcessVector(vector<Rect>& noses, vector<Rect>& noses2, Rect Roi)
 {
 	if(noses.size() > 0)
 	{
-		for(int i = 0; i < noses.size(); i++)
+		for(unsigned int i = 0; i < noses.size(); i++)
 		{
 			if(noses[i].width > Roi.width/2 || (noses[i].x<=0 || noses[i].y<=0) || ( (noses[i].x+noses[i].width) >= Roi.width || (noses[i].y+noses[i].height) >= Roi.height) )
 			{
@@ -91,7 +91,7 @@ void ProcessVector(vector<Rect>& noses, vector<Rect>& noses2, Rect Roi)
 			noses2.push_back(noses[i]);
 		}
 
-		for(int i = 0; i < noses2.size(); i++)
+		for(unsigned int i = 0; i < noses2.size(); i++)
 		{ 
 			Rect nose_ = noses2[i];
 			nose_.x += Roi.x;
@@ -100,9 +100,9 @@ void ProcessVector(vector<Rect>& noses, vector<Rect>& noses2, Rect Roi)
 	}
 }
 
-void DrawVector(Mat& Frame, vector<Rect>& DrawRectVector, Rect Offset, Scalar Color, int HowMatch = 0, bool RotateRight = false)
+void DrawVector(Mat& Frame, vector<Rect>& DrawRectVector, Rect Offset, Scalar Color, unsigned int HowMatch = 0, bool RotateRight = false)
 {
-	for(int i = 0; i < DrawRectVector.size(); i++)
+	for(unsigned int i = 0; i < DrawRectVector.size(); i++)
 	{
 		//if(RotateRight == true)
 			//Offset.x = 320 - Offset.x - DrawRectVector[i].width;
@@ -289,9 +289,9 @@ extern "C++" DLLEXPORT void ProcessImage(Mat& TheFrame, vector<pair<int, int> > 
 		DrawVector(frame, mouths2, mouth_roi_rect, Scalar(0,0,255), 1, rotate_right);
 
 		//Подготовка результата
-		for(int i = 0; i < eyes2.size(); i++)	eyes2[i].y += face_roi_rect.y;
-		for(int i = 0; i < noses2.size(); i++)	noses2[i].y += nose_roi_rect.y;
-		for(int i = 0; i < mouths2.size(); i++)	mouths2[i].y += mouth_roi_rect.y;
+		for(unsigned int i = 0; i < eyes2.size(); i++)	eyes2[i].y += face_roi_rect.y;
+		for(unsigned int i = 0; i < noses2.size(); i++)	noses2[i].y += nose_roi_rect.y;
+		for(unsigned int i = 0; i < mouths2.size(); i++)	mouths2[i].y += mouth_roi_rect.y;
 		PrepareResult(ResultVector, eyes2, noses2, mouths2);
 
 		//Вычисление углов
@@ -319,3 +319,4 @@ extern "C++" DLLEXPORT void ProcessImage(Mat& TheFrame, vector<pair<int, int> > 
 
 
 }
+

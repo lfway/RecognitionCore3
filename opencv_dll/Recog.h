@@ -47,16 +47,16 @@ public:
 		//-- Use Haar Detector
 		flip(frame, frame, 1);
 		cvtColor( frame, frame_gray, CV_BGR2GRAY );
-		mFaceCascade.detectMultiScale( frame_gray, faces, 1.3, 3, 1.1, Size(HAAR_HEAD_SIZE, HAAR_HEAD_SIZE) );
+		mFaceCascade.detectMultiScale( frame_gray, faces, 1.3, 3, 0, Size(HAAR_HEAD_SIZE, HAAR_HEAD_SIZE) );
 		if(faces.size() == 0)
 		{
-			mFaceProfCascade.detectMultiScale(frame_gray, faces, 1.3, 3, 1.1, Size(HAAR_HEAD_SIZE, HAAR_HEAD_SIZE));
+			mFaceProfCascade.detectMultiScale(frame_gray, faces, 1.3, 3, 0, Size(HAAR_HEAD_SIZE, HAAR_HEAD_SIZE));
 			if(faces.size() == 1)rotate_left = true;
 		}
 		if(faces.size() == 0)
 		{
 			flip(frame_gray, frame_gray, 1);
-			mFaceProfCascade.detectMultiScale(frame_gray, faces, 1.3, 3, 1.1, Size(HAAR_HEAD_SIZE, HAAR_HEAD_SIZE));
+			mFaceProfCascade.detectMultiScale(frame_gray, faces, 1.3, 3, 0, Size(HAAR_HEAD_SIZE, HAAR_HEAD_SIZE));
 			if(faces.size() == 1)rotate_right = true;
 		}
 
@@ -95,9 +95,9 @@ public:
 			DrawVector(frame, mouths2, mouth_roi_rect, Scalar(0,0,255), 1, rotate_right);
 
 			//Подготовка результата
-			for(int i = 0; i < eyes2.size(); i++)	eyes2[i].y += face_roi_rect.y;
-			for(int i = 0; i < noses2.size(); i++)	noses2[i].y += nose_roi_rect.y;
-			for(int i = 0; i < mouths2.size(); i++)	mouths2[i].y += mouth_roi_rect.y;
+			for(unsigned int i = 0; i < eyes2.size(); i++)	eyes2[i].y += face_roi_rect.y;
+			for(unsigned int i = 0; i < noses2.size(); i++)	noses2[i].y += nose_roi_rect.y;
+			for(unsigned int i = 0; i < mouths2.size(); i++)	mouths2[i].y += mouth_roi_rect.y;
 			PrepareResult(ResultVector, eyes2, noses2, mouths2);
 
 			//Вычисление углов
@@ -134,7 +134,7 @@ private:
 	{
 		if(noses.size() > 0)
 		{
-			for(int i = 0; i < noses.size(); i++)
+			for(unsigned int i = 0; i < noses.size(); i++)
 			{
 				if(noses[i].width > Roi.width/2 || (noses[i].x<=0 || noses[i].y<=0) || ( (noses[i].x+noses[i].width) >= Roi.width || (noses[i].y+noses[i].height) >= Roi.height) )
 				{
@@ -143,7 +143,7 @@ private:
 				noses2.push_back(noses[i]);
 			}
 
-			for(int i = 0; i < noses2.size(); i++)
+			for(unsigned int i = 0; i < noses2.size(); i++)
 			{ 
 				Rect nose_ = noses2[i];
 				nose_.x += Roi.x;
@@ -152,9 +152,9 @@ private:
 		}
 	}
 
-	void DrawVector(Mat& Frame, vector<Rect>& DrawRectVector, Rect Offset, Scalar Color, int HowMatch = 0, bool RotateRight = false)
+	void DrawVector(Mat& Frame, vector<Rect>& DrawRectVector, Rect Offset, Scalar Color,unsigned  int HowMatch = 0, bool RotateRight = false)
 	{
-		for(int i = 0; i < DrawRectVector.size(); i++)
+		for(unsigned int i = 0; i < DrawRectVector.size(); i++)
 		{
 			//if(RotateRight == true)
 				//Offset.x = 320 - Offset.x - DrawRectVector[i].width;
