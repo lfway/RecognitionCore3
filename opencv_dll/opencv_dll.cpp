@@ -68,7 +68,7 @@ void InitHogDescriptor(HOGDescriptor& hog, string VectorFile)
 	for(std::string::size_type p0=0,p1=input.find(' ');
         p1!=std::string::npos || p0!=std::string::npos;
         (p0=(p1==std::string::npos)?p1:++p1),p1=input.find(' ', p0) )
-		output.push_back( strtod(input.c_str()+p0,NULL) );
+		output.push_back( (float)strtod(input.c_str()+p0,NULL) );
 
 	hog.derivAperture = 1;
 	hog.blockSize = Size(16, 16);
@@ -241,16 +241,16 @@ extern "C++" DLLEXPORT void ProcessImage(Mat& TheFrame, vector<pair<int, int> > 
 	//-- Use Haar Detector
 	flip(frame, frame, 1);
 	cvtColor( frame, frame_gray, CV_BGR2GRAY );
-	face_cascade.detectMultiScale( frame_gray, faces, 1.3, 3, 1.1, Size(HAAR_HEAD_SIZE, HAAR_HEAD_SIZE) );
+	face_cascade.detectMultiScale( frame_gray, faces, 1.3, 3, 0, Size(HAAR_HEAD_SIZE, HAAR_HEAD_SIZE) );
 	if(faces.size() == 0)
 	{
-		face_prof_cascade.detectMultiScale(frame_gray, faces, 1.3, 3, 1.1, Size(HAAR_HEAD_SIZE, HAAR_HEAD_SIZE));
+		face_prof_cascade.detectMultiScale(frame_gray, faces, 1.3, 3, 0, Size(HAAR_HEAD_SIZE, HAAR_HEAD_SIZE));
 		if(faces.size() == 1)rotate_left = true;
 	}
 	if(faces.size() == 0)
 	{
 		flip(frame_gray, frame_gray, 1);
-		face_prof_cascade.detectMultiScale(frame_gray, faces, 1.3, 3, 1.1, Size(HAAR_HEAD_SIZE, HAAR_HEAD_SIZE));
+		face_prof_cascade.detectMultiScale(frame_gray, faces, 1.3, 3, 0, Size(HAAR_HEAD_SIZE, HAAR_HEAD_SIZE));
 		if(faces.size() == 1)rotate_right = true;
 	}
 
@@ -263,7 +263,7 @@ extern "C++" DLLEXPORT void ProcessImage(Mat& TheFrame, vector<pair<int, int> > 
 		face_roi_rect.y += faces[0].height/8;
 		face_roi_rect.height -= faces[0].height/2;
 		nose_roi_rect.y += faces[0].height/4;
-		nose_roi_rect.height -= faces[0].height/4*1.5;
+		nose_roi_rect.height -= (int)(faces[0].height/4*1.5);
 		mouth_roi_rect.y += faces[0].height/2;
 		mouth_roi_rect.height -= faces[0].height/2;
 				

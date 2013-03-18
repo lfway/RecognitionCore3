@@ -69,7 +69,7 @@ public:
 			face_roi_rect.y += faces[0].height/8;
 			face_roi_rect.height -= faces[0].height/2;
 			nose_roi_rect.y += faces[0].height/4;
-			nose_roi_rect.height -= faces[0].height/4*1.5;
+			nose_roi_rect.height -= (int)(faces[0].height/4*1.5);
 			mouth_roi_rect.y += faces[0].height/2;
 			mouth_roi_rect.height -= faces[0].height/2;
 				
@@ -263,7 +263,7 @@ private:
 		for(std::string::size_type p0=0,p1=input.find(' ');
 			p1!=std::string::npos || p0!=std::string::npos;
 			(p0=(p1==std::string::npos)?p1:++p1),p1=input.find(' ', p0) )
-			output.push_back( strtod(input.c_str()+p0,NULL) );
+			output.push_back( (float)strtod(input.c_str()+p0,NULL) );
 
 		hog.derivAperture = 1;
 		hog.blockSize = Size(16, 16);
