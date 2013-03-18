@@ -43,7 +43,7 @@
     <LibraryPath>C:\Projects\GitHub\RecognitionCore3\Debug;C:\opencv\build\x86\vc10\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LibraryPath>C:\opencv\build\x86\vc10\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Projects\GitHub\RecognitionCore3\Release;C:\opencv\build\x86\vc10\lib;$(LibraryPath)</LibraryPath>
     <IncludePath>C:\opencv\build\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
